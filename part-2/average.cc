@@ -12,12 +12,11 @@ int main(int argc, char* argv[]) {
 
   // Validate that there is at least one command line argument.
   // If not, print an error message and return a non-zero value.
-  if (argc < 2) {
-    std::cerr << "error: you must supply at least one number" << std::endl;
+  if (argc <= 1) {
+    std::cerr << "error: you must supply at least one number\n";
     return 1;
   }
 
-  double sum = 0.0;
   // Write a for-each loop to sum (add up) all of the command line
   // arguments.
   // Use a double or float type so that your program preserves fractional
@@ -26,18 +25,11 @@ int main(int argc, char* argv[]) {
   // of the arguments vector.
   // Each argument is a std::string. You will need to convert each string into
   // a number with the std::stod or std::stof function.
+  double sum = 0.0;
   for (int i = 1; i < argc; ++i) {
-    try {
-      double num = std::stod(arguments[i]);
-      sum += num;
-    } catch (std::invalid_argument& e) {
-      std::cerr << "error: invalid number format" << std::endl;
-      return 1;
-    } catch (std::out_of_range& e) {
-      std::cerr << "error: number out of range" << std::endl;
-      return 1;
-    }
+    sum += std::stod(arguments[i]);
   }
+
   // After the loop has finished summing the arguments, calculate the
   // average of the values. Recall that the average is the total value divided
   // by the number of values.
